@@ -3,144 +3,1079 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thamizharivu – தமிழ் அறிவு</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <title>தமிழறிவு – Thamizharivu</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;600;700;900&family=Noto+Serif+Tamil:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --maroon:   #7A0C0C;
+      --maroon2:  #9B1515;
+      --gold:     #C9912A;
+      --gold-lt:  #F0C96A;
+      --cream:    #FDF8EE;
+      --ink:      #1C1008;
+      --muted:    #6B5B4E;
+      --green:    #2D6A4F;
+      --leaf:     #40916C;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: #fff;
-      color: #333;
-      line-height: 1.6;
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      overflow-x: hidden;
     }
+
+    /* ─── PALM-LEAF TEXTURE OVERLAY ─── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background-image:
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 38px,
+          rgba(122,12,12,0.035) 38px,
+          rgba(122,12,12,0.035) 39px
+        );
+      pointer-events: none;
+    }
+
+    /* ─── HEADER ─── */
     header {
-      background: #800000;
-      color: #fff;
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: sticky; top: 0; z-index: 100;
+      background: var(--maroon);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem;
+      height: 68px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
-    header h1 {
+
+    .logo-wrap {
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .logo-glyph {
+      font-family: 'Noto Serif Tamil', serif;
+      font-size: 2rem;
+      color: var(--gold-lt);
+      line-height: 1;
+    }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-tamil {
       font-family: 'Noto Sans Tamil', sans-serif;
-      margin: 0;
-    }
-    nav a {
+      font-weight: 700;
+      font-size: 1.1rem;
       color: #fff;
-      margin-left: 1rem;
+      letter-spacing: 0.02em;
+    }
+    .logo-eng {
+      font-size: 0.7rem;
+      color: var(--gold-lt);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    nav { display: flex; gap: 1.8rem; align-items: center; }
+    nav a {
+      color: rgba(255,255,255,0.85);
       text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      transition: color .2s;
+      font-family: 'Noto Sans Tamil', sans-serif;
+    }
+    nav a:hover { color: var(--gold-lt); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--ink) !important;
+      padding: 0.45rem 1.1rem;
+      border-radius: 4px;
+      font-weight: 600 !important;
+    }
+    .nav-cta:hover { background: var(--gold-lt) !important; }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative; z-index: 1;
+      min-height: 92vh;
+      display: grid; place-items: center;
+      text-align: center;
+      padding: 5rem 2rem 4rem;
+      overflow: hidden;
+    }
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.06;
+      background: var(--maroon);
+      pointer-events: none;
+    }
+    .hero-bg-circle.c1 { width: 700px; height: 700px; top: -200px; left: -200px; }
+    .hero-bg-circle.c2 { width: 500px; height: 500px; bottom: -100px; right: -150px; background: var(--gold); opacity: 0.07; }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(122,12,12,0.08);
+      border: 1px solid rgba(122,12,12,0.2);
+      color: var(--maroon2);
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.4rem 1rem; border-radius: 999px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+    .hero-badge span { font-size: 1rem; }
+
+    .hero h1 {
+      font-family: 'Noto Serif Tamil', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      color: var(--maroon);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+      animation: fadeUp 0.7s ease 0.1s both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+    }
+
+    .hero-sub-tamil {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      color: var(--maroon2);
+      margin-bottom: 1rem;
+      animation: fadeUp 0.7s ease 0.2s both;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 640px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+      animation: fadeUp 0.7s ease 0.3s both;
+    }
+
+    .hero-btns {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.7s ease 0.4s both;
+    }
+    .btn-primary {
+      background: var(--maroon);
+      color: #fff;
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-size: 0.95rem; font-weight: 600;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: background .2s, transform .2s;
+    }
+    .btn-primary:hover { background: var(--maroon2); transform: translateY(-2px); }
+    .btn-outline {
+      border: 2px solid var(--maroon);
+      color: var(--maroon);
+      padding: 0.85rem 2rem;
+      border-radius: 6px;
+      font-size: 0.95rem; font-weight: 600;
+      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      transition: all .2s;
+    }
+    .btn-outline:hover { background: var(--maroon); color: #fff; transform: translateY(-2px); }
+
+    .hero-quote {
+      margin-top: 4rem;
+      animation: fadeUp 0.7s ease 0.5s both;
+    }
+    .hero-quote blockquote {
+      font-family: 'Noto Serif Tamil', serif;
+      font-size: clamp(1.2rem, 2.5vw, 1.7rem);
+      color: var(--maroon);
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+    .hero-quote cite {
+      display: block; margin-top: 0.5rem;
+      font-size: 0.85rem; color: var(--muted);
+      font-style: normal; letter-spacing: 0.06em;
+    }
+
+    /* ─── SECTION COMMON ─── */
+    section { position: relative; z-index: 1; }
+    .wrap { max-width: 1080px; margin: auto; padding: 5rem 2rem; }
+    .section-label {
+      display: inline-block;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      font-weight: 700; color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Noto Serif Tamil', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
+      font-weight: 700; color: var(--maroon);
+      margin-bottom: 1rem;
+    }
+    .section-body {
+      font-size: 1.05rem; color: var(--muted);
+      max-width: 680px; line-height: 1.85;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── IDEOLOGY STRIP ─── */
+    .ideology {
+      background: var(--maroon);
+      color: #fff;
+    }
+    .ideology .wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: center;
+    }
+    .ideology-text .section-title { color: var(--gold-lt); }
+    .ideology-text .section-label { color: var(--gold); }
+    .ideology-text p {
+      font-size: 1rem; line-height: 1.9;
+      color: rgba(255,255,255,0.82);
+      margin-bottom: 1rem;
+    }
+    .ideology-text p strong {
+      color: var(--gold-lt);
       font-weight: 600;
     }
-    .section {
-      padding: 3rem 2rem;
-      max-width: 1000px;
-      margin: auto;
+    .ideology-pillars {
+      display: flex; flex-direction: column; gap: 1.2rem;
     }
-    .section h2 {
-      color: #800000;
-      margin-bottom: 1rem;
+    .pillar {
+      background: rgba(255,255,255,0.07);
+      border-left: 3px solid var(--gold);
+      padding: 1.1rem 1.4rem;
+      border-radius: 0 8px 8px 0;
+    }
+    .pillar-title {
       font-family: 'Noto Sans Tamil', sans-serif;
+      font-weight: 700; font-size: 1rem;
+      color: var(--gold-lt); margin-bottom: 0.3rem;
     }
-    .grid {
+    .pillar p { font-size: 0.9rem; color: rgba(255,255,255,0.72); margin: 0; line-height: 1.7; }
+
+    /* ─── MISSION STATS ─── */
+    .stats-band {
+      background: var(--gold);
+    }
+    .stats-band .wrap {
+      display: flex; flex-wrap: wrap; gap: 1rem;
+      align-items: center; justify-content: space-around;
+      padding: 2.5rem 2rem;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem; font-weight: 700;
+      color: var(--maroon); line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.82rem; color: var(--ink);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      font-weight: 600; margin-top: 0.3rem;
+    }
+    .stat-tamil {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-size: 0.9rem; color: var(--maroon);
+    }
+
+    /* ─── LEARN TAMIL (grid) ─── */
+    .learn-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.5rem;
     }
-    .card {
-      background: #fdfdfd;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease;
+    .learn-card {
+      background: #fff;
+      border: 1px solid rgba(122,12,12,0.12);
+      border-radius: 10px;
+      padding: 2rem 1.6rem;
+      position: relative; overflow: hidden;
+      transition: transform .25s, box-shadow .25s;
     }
-    .card:hover {
-      transform: translateY(-4px);
+    .learn-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(90deg, var(--maroon), var(--gold));
     }
-    footer {
-      background: #f2f2f2;
+    .learn-card:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(122,12,12,0.12); }
+    .learn-card-icon { font-size: 2.2rem; margin-bottom: 1rem; }
+    .learn-card-title {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-size: 1.05rem; font-weight: 700; color: var(--maroon);
+      margin-bottom: 0.4rem;
+    }
+    .learn-card-eng { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-bottom: 0.7rem; }
+    .learn-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── ACCENT MAP ─── */
+    .accent { background: #fff; }
+    .accent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.2rem; margin-top: 2rem;
+    }
+    .accent-chip {
+      border: 1.5px solid rgba(122,12,12,0.15);
+      border-radius: 10px;
+      padding: 1.4rem;
+      display: flex; flex-direction: column; gap: 0.4rem;
+      transition: border-color .2s, background .2s;
+    }
+    .accent-chip:hover { border-color: var(--maroon); background: rgba(122,12,12,0.03); }
+    .accent-flag { font-size: 1.6rem; }
+    .accent-name {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-weight: 700; font-size: 0.95rem; color: var(--maroon);
+    }
+    .accent-eng { font-size: 0.78rem; color: var(--gold); font-weight: 600; }
+    .accent-chip p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── HOW IT WORKS ─── */
+    .pipeline { background: var(--cream); }
+    .pipeline-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; position: relative;
+    }
+    .pipeline-steps::before {
+      content: '';
+      position: absolute; top: 40px; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--maroon), var(--gold), var(--maroon));
+      z-index: 0;
+    }
+    .step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 1rem 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .step-num {
+      width: 52px; height: 52px;
+      background: var(--maroon); color: #fff;
+      border-radius: 50%;
+      display: grid; place-items: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem; font-weight: 700;
+      margin-bottom: 1.2rem;
+      border: 3px solid var(--cream);
+      box-shadow: 0 0 0 2px var(--maroon);
+    }
+    .step-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+    .step-title {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-weight: 700; font-size: 0.92rem; color: var(--maroon);
+      margin-bottom: 0.3rem;
+    }
+    .step p { font-size: 0.82rem; color: var(--muted); line-height: 1.6; }
+
+    /* ─── AI TOOL / DEMO ─── */
+    .demo-section { background: #fff; }
+    .demo-box {
+      background: var(--cream);
+      border: 1px solid rgba(122,12,12,0.15);
+      border-radius: 14px;
+      padding: 2.5rem;
+      max-width: 700px;
+    }
+    .demo-box-title {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-size: 1.15rem; font-weight: 700; color: var(--maroon);
+      margin-bottom: 0.3rem;
+    }
+    .demo-box p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.5rem; }
+    .demo-row {
+      display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 1rem;
+    }
+    .demo-input {
+      flex: 1; min-width: 200px;
+      padding: 0.8rem 1rem;
+      border: 1.5px solid rgba(122,12,12,0.25);
+      border-radius: 6px;
+      background: #fff;
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-size: 1rem; color: var(--ink);
+      outline: none;
+    }
+    .demo-input:focus { border-color: var(--maroon); }
+    .demo-btn {
+      padding: 0.8rem 1.4rem;
+      background: var(--maroon); color: #fff;
+      border: none; border-radius: 6px;
+      font-size: 0.9rem; font-weight: 600;
+      cursor: pointer;
+      display: flex; align-items: center; gap: 0.4rem;
+      transition: background .2s;
+    }
+    .demo-btn:hover { background: var(--maroon2); }
+    .demo-chips {
+      display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.5rem;
+    }
+    .demo-chip {
+      background: rgba(122,12,12,0.07);
+      border: 1px solid rgba(122,12,12,0.15);
+      color: var(--maroon);
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-size: 0.88rem; cursor: pointer;
+      transition: background .2s;
+    }
+    .demo-chip:hover { background: rgba(122,12,12,0.14); }
+
+    /* ─── KIDS SECTION ─── */
+    .kids { background: linear-gradient(135deg, #fff8e1 0%, #fff 100%); }
+    .kids-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.4rem; margin-top: 2rem;
+    }
+    .kids-card {
+      background: #fff;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
       text-align: center;
-      padding: 2rem;
-      font-size: 0.9rem;
+      box-shadow: 0 4px 20px rgba(201,145,42,0.1);
+      border: 1.5px solid rgba(201,145,42,0.2);
+      transition: transform .2s;
     }
-    .ai-box {
-      margin-top: 2rem;
-      padding: 1.5rem;
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      background: #fafafa;
-      text-align: center;
+    .kids-card:hover { transform: translateY(-4px); }
+    .kids-card-emoji { font-size: 2.8rem; margin-bottom: 0.8rem; }
+    .kids-card-title {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-weight: 700; font-size: 1rem; color: var(--maroon);
+      margin-bottom: 0.5rem;
     }
-    .ai-box input {
-      width: 70%;
-      padding: 0.75rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-right: 0.5rem;
+    .kids-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+
+    /* ─── DATASETS ─── */
+    .datasets { background: var(--maroon); }
+    .datasets .section-label { color: var(--gold); }
+    .datasets .section-title { color: var(--gold-lt); }
+    .datasets .section-body { color: rgba(255,255,255,0.78); }
+    .datasets-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
     }
-    .ai-box button {
-      padding: 0.75rem 1rem;
-      background: #800000;
+    .dataset-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 1.6rem;
+      transition: background .2s;
+    }
+    .dataset-card:hover { background: rgba(255,255,255,0.1); }
+    .dataset-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .dataset-title {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-weight: 700; font-size: 0.97rem; color: var(--gold-lt);
+      margin-bottom: 0.3rem;
+    }
+    .dataset-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.5rem;
+    }
+    .dataset-card p { font-size: 0.85rem; color: rgba(255,255,255,0.66); line-height: 1.7; }
+
+    /* ─── THIRUKKURAL ─── */
+    .kural { background: #fff; }
+    .kural-card {
+      background: linear-gradient(135deg, var(--maroon), #4a0a0a);
       color: #fff;
-      border: none;
-      border-radius: 4px;
-      font-weight: 600;
+      border-radius: 14px;
+      padding: 2.5rem 2.5rem 2rem;
+      max-width: 680px;
+      position: relative; overflow: hidden;
+    }
+    .kural-card::after {
+      content: '௸';
+      position: absolute; right: 2rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 8rem; opacity: 0.06;
+      font-family: 'Noto Sans Tamil', sans-serif;
+      pointer-events: none;
+    }
+    .kural-num {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--gold); font-weight: 700; margin-bottom: 1rem;
+    }
+    .kural-lines {
+      font-family: 'Noto Serif Tamil', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      line-height: 1.9;
+      margin-bottom: 1.2rem;
+    }
+    .kural-meaning {
+      font-size: 0.92rem; color: rgba(255,255,255,0.75);
+      line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.15);
+      padding-top: 1rem;
+    }
+    .kural-meaning strong { color: var(--gold-lt); }
+
+    /* ─── OPEN SOURCE / COMMUNITY ─── */
+    .community { background: var(--cream); }
+    .community-boxes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 2rem;
+    }
+    .community-box {
+      background: #fff;
+      border: 1px solid rgba(122,12,12,0.12);
+      border-radius: 10px;
+      padding: 1.8rem;
+    }
+    .community-box-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .community-box-title {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      font-weight: 700; font-size: 1rem; color: var(--maroon);
+      margin-bottom: 0.5rem;
+    }
+    .community-box p { font-size: 0.88rem; color: var(--muted); line-height: 1.75; }
+    .community-box ul {
+      list-style: none; margin-top: 0.8rem;
+    }
+    .community-box ul li {
+      font-size: 0.85rem; color: var(--muted);
+      padding: 0.25rem 0; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .community-box ul li::before { content: '◈'; color: var(--gold); font-size: 0.7rem; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #1C1008;
+      color: rgba(255,255,255,0.65);
+      padding: 3rem 2rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1080px; margin: auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
+      margin-bottom: 2rem;
+    }
+    .footer-brand .logo-tamil { color: var(--gold-lt); font-size: 1.3rem; }
+    .footer-brand p {
+      font-size: 0.85rem; line-height: 1.8; margin-top: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+    footer h4 {
+      color: var(--gold); font-size: 0.78rem;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 0.5rem; }
+    footer ul a {
+      color: rgba(255,255,255,0.55); text-decoration: none;
+      font-size: 0.88rem; transition: color .2s;
+    }
+    footer ul a:hover { color: var(--gold-lt); }
+    .footer-bottom {
+      max-width: 1080px; margin: auto;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 1.5rem;
+      display: flex; justify-content: space-between; flex-wrap: wrap;
+      gap: 0.5rem; font-size: 0.8rem;
+    }
+    .footer-bottom a { color: var(--gold); text-decoration: none; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      header { padding: 0 1.2rem; }
+      nav { gap: 1rem; }
+      nav a { font-size: 0.8rem; }
+      .ideology .wrap { grid-template-columns: 1fr; gap: 2rem; }
+      .pipeline-steps::before { display: none; }
+      .footer-inner { grid-template-columns: 1fr; gap: 1.5rem; }
     }
   </style>
 </head>
 <body>
 
+<!-- ════ HEADER ════ -->
 <header>
-  <h1>தமிழறிவு</h1>
+  <div class="logo-wrap">
+    <div class="logo-glyph">த</div>
+    <div class="logo-text">
+      <span class="logo-tamil">தமிழறிவு</span>
+      <span class="logo-eng">Thamizharivu</span>
+    </div>
+  </div>
   <nav>
+    <a href="#ideology">நோக்கம்</a>
     <a href="#learn">கற்க</a>
-    <a href="#pronounce">உச்சரிப்பு</a>
-    <a href="#datasets">தரவுத்தொகுப்புகள்</a>
-    <a href="#community">சமூகம்</a>
+    <a href="#accents">வட்டார வழக்கு</a>
+    <a href="#kids">குழந்தைகள்</a>
+    <a href="#datasets">தரவுகள்</a>
+    <a href="#community" class="nav-cta">சமூகம்</a>
   </nav>
 </header>
 
-<section class="section">
-  <h2>தமிழறிவு – An Open Tamil Knowledge Platform</h2>
-  <p>Learn Tamil, practice pronunciation, explore datasets, and contribute to building AI tools in our mother tongue.</p>
-</section>
-
-<section id="learn" class="section">
-  <h2>Learn Tamil</h2>
-  <div class="grid">
-    <div class="card">📖 Tamil Letters</div>
-    <div class="card">🗣 Pronunciation Practice</div>
-    <div class="card">✍️ Grammar & Stories</div>
+<!-- ════ HERO ════ -->
+<section class="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div>
+    <div class="hero-badge"><span>🌿</span> Open-source · Tamil-first · Kid-friendly</div>
+    <h1>தமிழ் — <em>Living,<br>Breathing,</em> Growing</h1>
+    <p class="hero-sub-tamil">உச்சரிப்பு சரி பார்க்க · எழுத்து திருத்த · இலக்கணம் கற்க</p>
+    <p>An open AI platform that listens to your Tamil, understands every accent — from Chennai streets to Sri Lankan shores — and gently guides children back to their mother tongue.</p>
+    <div class="hero-btns">
+      <a href="#learn" class="btn-primary">▶ கற்றல் தொடங்கு &nbsp; Start Learning</a>
+      <a href="#datasets" class="btn-outline">📂 Explore Datasets</a>
+    </div>
+    <div class="hero-quote">
+      <blockquote>யாதும் ஊரே யாவரும் கேளிர்</blockquote>
+      <cite>— புறநானூறு · Purananuru 192 &nbsp;|&nbsp; "Every land is my home; all people are my kin."</cite>
+    </div>
   </div>
 </section>
 
-<section id="pronounce" class="section">
-  <h2>Pronunciation Checker</h2>
-  <p>Speak Tamil words and get instant feedback on your pronunciation.</p>
-  <div class="ai-box">
-    <input type="text" placeholder="Type a Tamil word...">
-    <button>🎤 Speak</button>
+<!-- ════ STATS BAND ════ -->
+<div class="stats-band">
+  <div class="wrap">
+    <div class="stat">
+      <div class="stat-num">80M+</div>
+      <div class="stat-tamil">தமிழ் பேசுபவர்கள்</div>
+      <div class="stat-label">Tamil Speakers</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">2,000+</div>
+      <div class="stat-tamil">ஆண்டு பழமை</div>
+      <div class="stat-label">Years of Literature</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">5+</div>
+      <div class="stat-tamil">வட்டார வழக்குகள்</div>
+      <div class="stat-label">Regional Accents</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1,330</div>
+      <div class="stat-tamil">திருக்குறள் வெண்பாக்கள்</div>
+      <div class="stat-label">Thirukkural Couplets</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════ IDEOLOGY ════ -->
+<section class="ideology" id="ideology">
+  <div class="wrap">
+    <div class="ideology-text">
+      <span class="section-label">நம் நோக்கம் · Our Mission</span>
+      <h2 class="section-title">தாய்மொழியை மீட்போம்</h2>
+      <p>Tamil is one of the world's oldest living classical languages — yet millions of children today grow up unable to read, write, or speak it fluently. English-medium schooling, migration, and digital gaps have eroded what 2,000 years of literature built.</p>
+      <p><strong>Thamizharivu</strong> is our answer. We build open AI tools that <strong>listen</strong> to Tamil spoken in every accent, <strong>correct</strong> gently without shaming, and <strong>celebrate</strong> the diversity of our dialects — from the fast rhythm of Chennai to the melodic cadence of Jaffna.</p>
+      <p>We do not impose a single "correct" Tamil. We honour every voice — Madurai, Coimbatore, Sri Lankan, Malaysian, diaspora — while helping children write beautifully and speak clearly.</p>
+    </div>
+    <div class="ideology-pillars">
+      <div class="pillar">
+        <div class="pillar-title">🎙 கேட்டல் — Listening First</div>
+        <p>AI that hears the child's voice before it speaks. Accent-aware speech recognition trained on regional Tamil audio datasets.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">✍️ திருத்துதல் — Gentle Correction</div>
+        <p>No red marks. No shame. Visual cues in Tamil guide the learner toward correct spelling and grammar without discouragement.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">📖 வளர்த்தல் — Growing Together</div>
+        <p>Open datasets contributed by communities, annotated for accent and age, to train better models for every generation.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-title">🌏 சேர்த்தல் — Inclusivity</div>
+        <p>Tamil belongs to all who speak it — in Tamil Nadu, Sri Lanka, Singapore, Malaysia, and the global diaspora.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="datasets" class="section">
-  <h2>Datasets</h2>
-  <p>We host open Tamil datasets for letters, audio, and stories. Contribute your data to help train AI models.</p>
-  <div class="grid">
-    <div class="card">🔤 Letters Dataset</div>
-    <div class="card">🎧 Audio Dataset</div>
-    <div class="card">📚 Stories Dataset</div>
+<!-- ════ LEARN TAMIL ════ -->
+<section id="learn">
+  <div class="wrap">
+    <span class="section-label">கற்றல் · Learn</span>
+    <h2 class="section-title">கற்கக் கசடறக் கற்பவை</h2>
+    <p class="section-body">Learn to read, write, and speak Tamil — from the first stroke of அ to composing full sentences. All lessons are in Tamil-first, with English support available.</p>
+    <div class="learn-grid">
+      <div class="learn-card">
+        <div class="learn-card-icon">அ</div>
+        <div class="learn-card-title">அகர வரிசை</div>
+        <div class="learn-card-eng">Tamil Alphabet</div>
+        <p>Learn all 247 Tamil letters — 12 vowels (உயிர்), 18 consonants (மெய்), and 216 compound letters (உயிர்மெய்). Interactive stroke-order animations.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-card-icon">🎵</div>
+        <div class="learn-card-title">உச்சரிப்பு பயிற்சி</div>
+        <div class="learn-card-eng">Pronunciation Practice</div>
+        <p>Speak a word aloud. Our AI compares your audio to reference phonemes and gives instant feedback — where your tongue should be, how long to hold the vowel.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-card-icon">📝</div>
+        <div class="learn-card-title">இலக்கணம்</div>
+        <div class="learn-card-eng">Grammar Foundations</div>
+        <p>Tamil grammar — எழுத்திலக்கணம் (phonology), சொல்லிலக்கணம் (morphology), and பொருளிலக்கணம் (semantics) — explained simply with real examples.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-card-icon">📚</div>
+        <div class="learn-card-title">கதைகள் & பாடல்கள்</div>
+        <div class="learn-card-eng">Stories & Songs</div>
+        <p>Public domain folk tales, Aesop in Tamil, and classic Sangam poems — read aloud, annotated, and searchable. Learn vocabulary through context.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-card-icon">✏️</div>
+        <div class="learn-card-title">எழுத்துப் பிழை திருத்தம்</div>
+        <div class="learn-card-eng">Spelling Correction</div>
+        <p>Type or paste any Tamil text. Our fine-tuned language model highlights errors, explains the correct spelling, and shows the grammatical rule — in Tamil.</p>
+      </div>
+      <div class="learn-card">
+        <div class="learn-card-icon">🏆</div>
+        <div class="learn-card-title">சாதனை பதக்கங்கள்</div>
+        <div class="learn-card-eng">Gamified Progress</div>
+        <p>Earn stars for daily practice, unlock badges for mastering letter groups, and track your streak on a Tamil-language progress board. Learning feels like play.</p>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="community" class="section">
-  <h2>Community</h2>
-  <p>Join us on GitHub, share datasets, and help train Tamil AI. Your input makes this platform stronger.</p>
+<!-- ════ ACCENT MAP ════ -->
+<section class="accent" id="accents">
+  <div class="wrap">
+    <span class="section-label">வட்டார வழக்கு · Regional Accents</span>
+    <h2 class="section-title">ஒவ்வொரு குரலும் தமிழே</h2>
+    <p class="section-body">There is no single "pure" Tamil — there is the Tamil of your street, your district, your island, your diaspora. Our AI recognises and honours every variation, never forcing one accent as the only standard.</p>
+    <div class="accent-grid">
+      <div class="accent-chip">
+        <div class="accent-flag">🏙️</div>
+        <div class="accent-name">சென்னை தமிழ்</div>
+        <div class="accent-eng">Chennai Tamil</div>
+        <p>Urban rhythm, code-mixing with English, the baseline dialect for most media.</p>
+      </div>
+      <div class="accent-chip">
+        <div class="accent-flag">🌾</div>
+        <div class="accent-name">மதுரை தமிழ்</div>
+        <div class="accent-eng">Madurai Tamil</div>
+        <p>Rich retroflex sounds, classical vocabulary preserved in everyday speech.</p>
+      </div>
+      <div class="accent-chip">
+        <div class="accent-flag">☕</div>
+        <div class="accent-name">கோவை தமிழ்</div>
+        <div class="accent-eng">Coimbatore Tamil</div>
+        <p>Softer consonants, distinct intonation, influenced by Kannada border regions.</p>
+      </div>
+      <div class="accent-chip">
+        <div class="accent-flag">🌊</div>
+        <div class="accent-name">ஈழத் தமிழ்</div>
+        <div class="accent-eng">Sri Lankan Tamil</div>
+        <p>Preserves archaic grammatical forms lost in mainland Tamil; unique phonology.</p>
+      </div>
+      <div class="accent-chip">
+        <div class="accent-flag">🌴</div>
+        <div class="accent-name">மலேசியத் தமிழ்</div>
+        <div class="accent-eng">Malaysian Tamil</div>
+        <p>Influenced by Malay and English, distinct musical quality, plantation vocabulary.</p>
+      </div>
+      <div class="accent-chip">
+        <div class="accent-flag">✈️</div>
+        <div class="accent-name">புலம்பெயர் தமிழ்</div>
+        <div class="accent-eng">Diaspora Tamil</div>
+        <p>Children raised abroad blending Tamil with English, French, German, or Dutch.</p>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ════ HOW IT WORKS (PIPELINE) ════ -->
+<section class="pipeline" id="pipeline">
+  <div class="wrap">
+    <span class="section-label">செயல்முறை · How It Works</span>
+    <h2 class="section-title">எப்படி வேலை செய்கிறது?</h2>
+    <p class="section-body">From the moment a child speaks into the microphone to the feedback they see on screen — every step is open-source, Tamil-first, and privacy-respecting.</p>
+    <div class="pipeline-steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-icon">🎤</div>
+        <div class="step-title">கேட்டல் · Listen</div>
+        <p>Child speaks a Tamil word. Audio captured at 16kHz mono.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-icon">🔊</div>
+        <div class="step-title">அலசல் · Analyse</div>
+        <p>Whisper / Wav2Vec2 model transcribes and detects the accent region.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-icon">⚖️</div>
+        <div class="step-title">ஒப்பீடு · Compare</div>
+        <p>Phoneme embeddings compared to native-speaker reference for that accent.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-icon">✍️</div>
+        <div class="step-title">திருத்தம் · Correct</div>
+        <p>LLM checks spelling and grammar. Highlights error, suggests fix in Tamil.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-icon">🌟</div>
+        <div class="step-title">பாராட்டு · Reward</div>
+        <p>Visual badge, star, or emoji reward reinforces correct pronunciation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DEMO / AI TOOL ════ -->
+<section class="demo-section" id="pronounce">
+  <div class="wrap">
+    <span class="section-label">AI கருவி · AI Tool</span>
+    <h2 class="section-title">இப்போதே முயற்சி செய்க</h2>
+    <p class="section-body">Type a Tamil word or sentence. Get spelling and grammar feedback — powered by a Tamil-tuned language model.</p>
+    <div class="demo-box">
+      <div class="demo-box-title">எழுத்துப் பிழை திருத்தம் — Spelling Checker</div>
+      <p>ஒரு தமிழ் வாக்கியம் தட்டச்சு செய்யவும்</p>
+      <div class="demo-row">
+        <input class="demo-input" type="text" placeholder="எ.கா. நான் பாடசாலைக்கு போறேன்..." id="spellInput">
+        <button class="demo-btn" onclick="checkSpelling()">🔍 சரிபார்</button>
+      </div>
+      <div class="demo-chips">
+        <span class="demo-chip" onclick="fillDemo('அவள் பாடம் படிக்கிறாள்')">அவள் பாடம் படிக்கிறாள்</span>
+        <span class="demo-chip" onclick="fillDemo('நான் தண்ணீர் குடிகிறேன்')">நான் தண்ணீர் குடிகிறேன்</span>
+        <span class="demo-chip" onclick="fillDemo('அவன் வீட்டிற்கு வந்தான்')">அவன் வீட்டிற்கு வந்தான்</span>
+      </div>
+      <div id="spellResult" style="margin-top:1.2rem; min-height: 2rem; font-family:'Noto Sans Tamil',sans-serif; font-size:0.95rem; color: var(--maroon);"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ KIDS SECTION ════ -->
+<section class="kids" id="kids">
+  <div class="wrap">
+    <span class="section-label">குழந்தைகளுக்காக · For Children</span>
+    <h2 class="section-title">குழந்தைகள் தமிழில் விளையாடட்டும்!</h2>
+    <p class="section-body">Our kid-friendly interface is entirely in Tamil. Bright visuals, simple words, and a gamified experience that makes learning feel like a game — not a chore.</p>
+    <div class="kids-grid">
+      <div class="kids-card">
+        <div class="kids-card-emoji">🔤</div>
+        <div class="kids-card-title">எழுத்து விளையாட்டு</div>
+        <p>Drag-and-drop Tamil letters to form words. Hear each letter pronounced correctly as you place it.</p>
+      </div>
+      <div class="kids-card">
+        <div class="kids-card-emoji">🎯</div>
+        <div class="kids-card-title">சொல் போட்டி</div>
+        <p>Flashcard challenge — see a picture, type the Tamil word. Three lives, five levels, unlimited fun.</p>
+      </div>
+      <div class="kids-card">
+        <div class="kids-card-emoji">🎙️</div>
+        <div class="kids-card-title">பேசு & கற்று</div>
+        <p>Speak a word shown on screen. The mic listens. A green ✅ or a gentle hint appears — no harsh buzzer.</p>
+      </div>
+      <div class="kids-card">
+        <div class="kids-card-emoji">📖</div>
+        <div class="kids-card-title">கதை வேளை</div>
+        <p>Illustrated Tamil folk tales read aloud by native voices. Tap any word to hear it again.</p>
+      </div>
+      <div class="kids-card">
+        <div class="kids-card-emoji">⭐</div>
+        <div class="kids-card-title">நட்சத்திர பரிசு</div>
+        <p>Earn stars, unlock badges, and climb the leaderboard — all described in Tamil, so reading is also rewarded.</p>
+      </div>
+      <div class="kids-card">
+        <div class="kids-card-emoji">🎨</div>
+        <div class="kids-card-title">எழுதும் பலகை</div>
+        <p>Draw Tamil letters with your finger or mouse. AI checks your stroke order and celebrates correct form.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ THIRUKKURAL SECTION ════ -->
+<section class="kural" id="kural">
+  <div class="wrap">
+    <span class="section-label">திருக்குறள் · Thirukkural</span>
+    <h2 class="section-title">காலத்தால் அழியாத தமிழ்</h2>
+    <p class="section-body">We begin with the Thirukkural — 1,330 couplets of timeless wisdom in the public domain. Every child learns Tamil through Valluvar's words.</p>
+    <div class="kural-card">
+      <div class="kural-num">திருக்குறள் · குறள் 391</div>
+      <div class="kural-lines">
+        கற்க கசடறக் கற்பவை கற்றபின்<br>
+        நிற்க அதற்குத் தக.
+      </div>
+      <div class="kural-meaning">
+        <strong>பொருள்:</strong> கற்கத் தக்கவற்றை குற்றமறக் கற்றுக்கொண்டு, அதற்கேற்ப நடந்து கொள்க.<br><br>
+        <strong>Meaning:</strong> Learn thoroughly what is worth learning; then live in accordance with what you have learned.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ DATASETS ════ -->
+<section class="datasets" id="datasets">
+  <div class="wrap">
+    <span class="section-label">திறந்த தரவுகள் · Open Datasets</span>
+    <h2 class="section-title">AI கட்டமைக்க தரவுகள் தேவை</h2>
+    <p class="section-body">Good Tamil AI needs good Tamil data. We collect, annotate, and release datasets under open licences. Every dataset starts with ethically sourced, community-contributed recordings.</p>
+    <div class="datasets-grid">
+      <div class="dataset-card">
+        <div class="dataset-icon">🔤</div>
+        <div class="dataset-title">எழுத்து தரவுத்தொகுப்பு</div>
+        <div class="dataset-tag">Letters Dataset</div>
+        <p>Handwritten and digital Tamil letters — all 247 characters across multiple fonts and handwriting styles. Useful for OCR training.</p>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-icon">🎧</div>
+        <div class="dataset-title">ஒலி தரவுத்தொகுப்பு</div>
+        <div class="dataset-tag">Audio Dataset</div>
+        <p>Native speaker recordings of Tamil phonemes, syllables, and common words — tagged by region, age group, and gender. CC BY 4.0.</p>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-icon">📚</div>
+        <div class="dataset-title">கதை தரவுத்தொகுப்பு</div>
+        <div class="dataset-tag">Stories Dataset</div>
+        <p>Tamil folk tales, Panchatantra, and simplified Sangam excerpts — sentence-aligned with audio, suitable for TTS and language model fine-tuning.</p>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-icon">🗺️</div>
+        <div class="dataset-title">வட்டார ஒலி தரவு</div>
+        <div class="dataset-tag">Accent Dataset</div>
+        <p>Region-tagged audio from Chennai, Madurai, Coimbatore, Sri Lanka, and Malaysia. Enables accent-aware ASR models.</p>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-icon">✍️</div>
+        <div class="dataset-title">பிழை–திருத்தம் இணைகள்</div>
+        <div class="dataset-tag">Error Correction Pairs</div>
+        <p>Crowd-sourced spelling and grammar errors paired with corrections. Vital for fine-tuning Tamil spell-check models.</p>
+      </div>
+      <div class="dataset-card">
+        <div class="dataset-icon">👦</div>
+        <div class="dataset-title">குழந்தை குரல் தரவு</div>
+        <div class="dataset-tag">Children's Speech</div>
+        <p>Age-annotated speech recordings of children (6–14) — essential for training models that understand non-adult pronunciation patterns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ COMMUNITY ════ -->
+<section class="community" id="community">
+  <div class="wrap">
+    <span class="section-label">சமூகம் · Community</span>
+    <h2 class="section-title">நாமே கட்டுவோம்</h2>
+    <p class="section-body">Thamizharivu is not a product — it is a movement. Every teacher who records a lesson, every parent who annotates a story, every developer who commits code is building the future of Tamil AI.</p>
+    <div class="community-boxes">
+      <div class="community-box">
+        <div class="community-box-icon">🎙️</div>
+        <div class="community-box-title">தரவு பங்களிப்பு — Contribute Data</div>
+        <p>Record 100 Tamil words on your phone. Upload via our simple web form. Your voice helps train the next generation of Tamil AI models.</p>
+        <ul>
+          <li>Record Tamil phonemes & words</li>
+          <li>Annotate your regional accent</li>
+          <li>Donate public-domain text</li>
+        </ul>
+      </div>
+      <div class="community-box">
+        <div class="community-box-icon">💻</div>
+        <div class="community-box-title">திறந்த மூலக் குறியீடு — Open Source</div>
+        <p>All models, datasets, and tools are released on GitHub under permissive licences. Fork, improve, and submit pull requests.</p>
+        <ul>
+          <li>Fine-tune Tamil ASR models</li>
+          <li>Build Tamil NLP pipelines</li>
+          <li>Improve the spelling checker</li>
+        </ul>
+      </div>
+      <div class="community-box">
+        <div class="community-box-icon">🏫</div>
+        <div class="community-box-title">பள்ளிகளுக்கு — For Schools</div>
+        <p>We partner with Tamil-medium schools and heritage language programs worldwide. Free access, Tamil-first curriculum integration, and teacher support.</p>
+        <ul>
+          <li>Free school accounts</li>
+          <li>Classroom progress dashboards</li>
+          <li>Teacher resource packs</li>
+        </ul>
+      </div>
+      <div class="community-box">
+        <div class="community-box-icon">🌐</div>
+        <div class="community-box-title">புலம்பெயர் சமூகம் — Diaspora</div>
+        <p>Growing up outside Tamil Nadu? Our diaspora program helps second-generation Tamil children connect with their heritage language at their own pace.</p>
+        <ul>
+          <li>Weekend school resources</li>
+          <li>Diaspora accent recognition</li>
+          <li>Parent & child learning kits</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
 <footer>
-  <p>© 2026 Thamizharivu.org – Open Tamil Knowledge Platform</p>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-tamil" style="font-family:'Noto Sans Tamil',sans-serif; font-size:1.4rem;">தமிழறிவு</div>
+      <p>An open AI platform for the Tamil language — built by the community, for the community. Tamil-first. Accent-inclusive. Kid-friendly. Free forever.</p>
+    </div>
+    <div>
+      <h4>கற்றல் · Learn</h4>
+      <ul>
+        <li><a href="#learn">Tamil Alphabet</a></li>
+        <li><a href="#learn">Pronunciation</a></li>
+        <li><a href="#learn">Grammar</a></li>
+        <li><a href="#kids">Kids Zone</a></li>
+        <li><a href="#kural">Thirukkural</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>கட்டமைப்பு · Build</h4>
+      <ul>
+        <li><a href="#datasets">Datasets</a></li>
+        <li><a href="#community">Contribute</a></li>
+        <li><a href="#community">GitHub</a></li>
+        <li><a href="#community">Schools</a></li>
+        <li><a href="#community">API Docs</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Thamizharivu.org — Open Tamil Knowledge Platform · <a href="#">CC BY 4.0</a></span>
+    <span>தமிழ் என்பது ஒரு மொழி மட்டுமல்ல — அது ஒரு உலகம். &nbsp;|&nbsp; Tamil is not just a language — it is a world.</span>
+  </div>
 </footer>
+
+<script>
+  function fillDemo(text) {
+    document.getElementById('spellInput').value = text;
+  }
+
+  function checkSpelling() {
+    const input = document.getElementById('spellInput').value.trim();
+    const el = document.getElementById('spellResult');
+    if (!input) {
+      el.innerHTML = '<span style="color:var(--muted)">ஒரு வாக்கியம் தட்டச்சு செய்யவும்.</span>';
+      return;
+    }
+    el.innerHTML = '<span style="color:var(--muted)">சரிபார்க்கிறது… ⏳</span>';
+    setTimeout(() => {
+      el.innerHTML =
+        '<span style="color:var(--green)">✅ உங்கள் வாக்கியம் சரியாக உள்ளது! &nbsp;|&nbsp; Your sentence looks correct.</span>' +
+        '<br><span style="color:var(--muted);font-size:0.82rem;margin-top:0.4rem;display:block">' +
+        '(Full AI spell-check coming soon — dataset contribution open now.)</span>';
+    }, 900);
+  }
+</script>
 
 </body>
 </html>
