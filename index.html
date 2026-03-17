@@ -1,69 +1,146 @@
 <!DOCTYPE html>
-<html>
+<html lang="ta">
 <head>
-<title>Thamizharivu</title>
-<meta charset="utf-8">
-<style>
-body{
-font-family: Arial;
-margin:40px;
-background:#f5f5f5;
-}
-.container{
-max-width:900px;
-margin:auto;
-background:white;
-padding:40px;
-border-radius:10px;
-}
-h1{
-color:#b30000;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thamizharivu – தமிழ் அறிவு</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #800000;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-family: 'Noto Sans Tamil', sans-serif;
+      margin: 0;
+    }
+    nav a {
+      color: #fff;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .section {
+      padding: 3rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .section h2 {
+      color: #800000;
+      margin-bottom: 1rem;
+      font-family: 'Noto Sans Tamil', sans-serif;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .card {
+      background: #fdfdfd;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      transition: transform 0.2s ease;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+    }
+    footer {
+      background: #f2f2f2;
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.9rem;
+    }
+    .ai-box {
+      margin-top: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fafafa;
+      text-align: center;
+    }
+    .ai-box input {
+      width: 70%;
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+    }
+    .ai-box button {
+      padding: 0.75rem 1rem;
+      background: #800000;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="container">
+<header>
+  <h1>தமிழறிவு</h1>
+  <nav>
+    <a href="#learn">கற்க</a>
+    <a href="#pronounce">உச்சரிப்பு</a>
+    <a href="#datasets">தரவுத்தொகுப்புகள்</a>
+    <a href="#community">சமூகம்</a>
+  </nav>
+</header>
 
-<h1>Thamizharivu</h1>
+<section class="section">
+  <h2>தமிழறிவு – An Open Tamil Knowledge Platform</h2>
+  <p>Learn Tamil, practice pronunciation, explore datasets, and contribute to building AI tools in our mother tongue.</p>
+</section>
 
-<p>
-Building open digital infrastructure for the Tamil language in the age of Artificial Intelligence.
-</p>
+<section id="learn" class="section">
+  <h2>Learn Tamil</h2>
+  <div class="grid">
+    <div class="card">📖 Tamil Letters</div>
+    <div class="card">🗣 Pronunciation Practice</div>
+    <div class="card">✍️ Grammar & Stories</div>
+  </div>
+</section>
 
-<h2>Our Mission</h2>
+<section id="pronounce" class="section">
+  <h2>Pronunciation Checker</h2>
+  <p>Speak Tamil words and get instant feedback on your pronunciation.</p>
+  <div class="ai-box">
+    <input type="text" placeholder="Type a Tamil word...">
+    <button>🎤 Speak</button>
+  </div>
+</section>
 
-<ul>
-<li>Create open Tamil datasets</li>
-<li>Digitize Tamil literature</li>
-<li>Develop Tamil AI tools</li>
-<li>Support Tamil language model research</li>
-</ul>
+<section id="datasets" class="section">
+  <h2>Datasets</h2>
+  <p>We host open Tamil datasets for letters, audio, and stories. Contribute your data to help train AI models.</p>
+  <div class="grid">
+    <div class="card">🔤 Letters Dataset</div>
+    <div class="card">🎧 Audio Dataset</div>
+    <div class="card">📚 Stories Dataset</div>
+  </div>
+</section>
 
-<h2>Why This Matters</h2>
+<section id="community" class="section">
+  <h2>Community</h2>
+  <p>Join us on GitHub, share datasets, and help train Tamil AI. Your input makes this platform stronger.</p>
+</section>
 
-<p>
-Tamil is one of the oldest languages in the world with a vast literary tradition.
-However, it is underrepresented in modern AI systems.
-</p>
-
-<p>
-Thamizharivu aims to change that by building open resources that help developers,
-researchers and communities create better Tamil AI tools.
-</p>
-
-<h2>Open Source Project</h2>
-
-<p>
-All work is open and collaborative.
-</p>
-
-<p>
-GitHub: https://github.com/thamizharivu
-</p>
-
-</div>
+<footer>
+  <p>© 2026 Thamizharivu.org – Open Tamil Knowledge Platform</p>
+</footer>
 
 </body>
 </html>
